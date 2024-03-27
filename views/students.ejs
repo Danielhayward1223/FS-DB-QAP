@@ -1,0 +1,30 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="students">
+            <form action="/students" method="POST">
+                <b>Students: </b></br> 
+            <% if (theStudent.length > 0) { %>
+                <% theStudent.forEach(student => { %>
+                    <b><%= student.name %></b>
+                    <button><a href="/students/<%=student.id%>/edit?name=<%=student.name%>&age=<%=student.age%>&grade=<%=student.grade%>">edit</a></button>
+                    <button><a href="/students/<%=student.id%>/delete?name=<%=student.name%>">delete</a></button></br> 
+                    <% }) %>
+            <% } %>
+            </br><label>Add Student:</label></br>
+            <label>Name:
+                <input type="text" id="name" name="name" value="<%= locals.name %>" required>
+            </label>
+            <label>Age:
+                <input type="text" id="age" name="age" value="<%= locals.age %>" required>
+            </label>
+            <label>Grade:
+                <input type="text" id="grade" name="grade" value="<%= locals.grade %>" required>
+            </label>
+            </br>
+            <button>POST</button>
+        </form>
+        </div>
+    </body>
+</html>

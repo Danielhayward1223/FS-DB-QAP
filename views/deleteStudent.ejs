@@ -1,0 +1,20 @@
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="delete content">
+      <h2>Delete Student</h2>
+      <form action="/students/<%= locals.theId %>?_method=DELETE" method="post">
+        <label>Confirmation to delete student from database: </label>
+        <input
+          type="text"
+          id="<%= locals.theId %>"
+          name="student_id"
+          value="<%= locals.name %>"
+          required
+        />
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+  </body>
+</html>

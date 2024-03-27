@@ -1,0 +1,16 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="edit content">
+            <form action="/students/<%= locals.theId %>?_method=PATCH" method="POST">
+                <label>Edit Student Info:</br>
+                    <input type="text" name="name" value="<%= locals.name %>" required>
+                    <input type="text" name="age" value="<%= locals.age %>" required>
+                    <input type="text" name="grade" value="<%= locals.grade %>" required>
+                </label></br>
+                <button>PATCH</button>
+            </form>
+        </div>
+    </body>
+</html>
