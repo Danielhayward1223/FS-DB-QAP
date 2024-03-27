@@ -1,9 +1,11 @@
+// import required modules
 const express = require("express");
 const uuid = require("uuid");
 const router = express.Router();
-
+// define the student data access layer
 const StudentDal = require("../services/pg.students.dal.js");
 
+// define the route for the students page
 router.get("/", async (req, res) => {
   try {
     let theStudent = await StudentDal.getStudents();
@@ -11,20 +13,16 @@ router.get("/", async (req, res) => {
     res.render("Students", { theStudent });
   } catch (err) {
     if (DEBUG) console.log(err);
-    // log this error to an error log file.
     res.render("err503");
   }
 });
 
+//
 router.get("/:id", async (req, res) => {
   try {
     let aStudent = await loginsDal.getStudentById(req.params.id);
-    if (aStudent === undefined) {
-      res.render("norecord");
-    } else {
-      if (DEBUG) console.table(aStudent);
-      res.render("Student", { aStudent });
-    }
+    if (DEBUG) console.table(aStudent);
+    res.render("Student", { aStudent });
   } catch (err) {
     res.render("err503");
   }
@@ -61,7 +59,6 @@ router.post("/", async (req, res) => {
     res.redirect("/students/");
   } catch (err) {
     if (DEBUG) console.log(err);
-    // log this error to an error log file.
     res.render("err503");
   }
 });
